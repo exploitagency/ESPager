@@ -20,7 +20,7 @@
 
 --------------------
 # What is it?  
---------------------
+
 * ESPager is capable of sending either GSC or POCSAG encoded pages to a pager through ESPager's retro inspired web interface.  
 * The radio module is removed from the pager and replaced with an ESP32 C3.  
 * The ESP32 has a GPIO pin connected directly to the pager's data in pin that was formerly occupied by the pager's radio module.  
@@ -49,7 +49,7 @@
 
 --------------------
 # BOM  
---------------------
+
 ** Note: Most of these items can only be found on AliExpress or through similar vendors  
 * Pager that supports POCSAG or GSC (1st Generation Motorola Advisor)  
 * ESP32 C3 (Generic ESP32-C3 SuperMini)  
@@ -66,7 +66,7 @@ Optional:
 
 --------------------
 # Instructions  
---------------------
+
 
 An ESP32 C3 running the code contained within this repo is installed inside a Motorola Advisor pager with slight hardware modifications.  
 
@@ -235,6 +235,10 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 * GSC API EXAMPLE  
 ** STA MODE: http://ESPager/gsc?msg=TEST+MESSAGE&cap=313371&function_code=3&data_type=1  
 ** AP MODE:  http://192.168.4.1/gsc?msg=TEST+MESSAGE&cap=313371&function_code=3&data_type=1  
+
+
+--------------------
+# Bonus Information (Unrelated to this repo)  
 
 --------------------
 ##### Bonus: Motorola Advisor Test Mode for Radio (Unrelated to this repo)  
