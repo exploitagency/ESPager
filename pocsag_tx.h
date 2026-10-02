@@ -1,20 +1,21 @@
 // ESPager by Hardcore Corey Harding
-/* -------------------------------------------------------------
+/*-------------------------------------------------------------
    POCSAG encoder for ESP32
    // Based on rpitx by F5OEO (https://github.com/F5OEO/rpitx)
-   // rpitx License: "license_rpitx.h" (https://github.com/F5OEO/rpitx/blob/master/LICENCE)
+   // rpitx License: "./3RD_PARTY_LICENSE/license_rpitx.h" (https://github.com/F5OEO/rpitx/blob/master/LICENCE)
    // Also adapted from Arduino Nano reference code from:
    //   https://hackaday.io/project/183267-motolora-advisor
-   // advisorradio.ino License: "license_advisorradio.h"
-   ------------------------------------------------------------- */
+   // advisorradio.ino License: "./3RD_PARTY_LICENSE/license_advisorradio.h"
+-------------------------------------------------------------*/
 
 #include <Arduino.h>
 #include <stdint.h>
 #include <string.h>
 #include <driver/gpio.h>
 
-/* -----------------------------------------------------------------
-   Protocol‑level constants                                            */
+/*-------------------------------------------------------------------
+   Protocol‑level constants
+--------------------------------------------------------------------*/
 #define SYNC               0x7CD215D8UL
 #define IDLE               0x7A89C197UL
 #define FRAME_SIZE         2
@@ -29,8 +30,9 @@
 #define NUMERIC_BITS_PER_DIGIT   4
 #define NUMERIC_DIGITS_PER_WORD (NUMERIC_BITS_PER_WORD / NUMERIC_BITS_PER_DIGIT)
 
-/* -----------------------------------------------------------------
-   BCH‑CRC helpers – generate the 10‑bit CRC and overall parity       */
+/*-------------------------------------------------------------------
+   BCH‑CRC helpers – generate the 10‑bit CRC and overall parity
+--------------------------------------------------------------------*/
 static uint32_t crc(uint32_t msg) {
     const uint32_t poly = 0b11101101001U << 20;
     uint32_t reg = msg << CRC_BITS;
@@ -55,8 +57,9 @@ static uint32_t encodeCodeword(uint32_t data) {
     return (cw << 1) | parity(cw);
 }
 
-/* -----------------------------------------------------------------
-   ASCII message encoding – packs 7‑bit characters into 20‑bit words   */
+/*-------------------------------------------------------------------
+   ASCII message encoding – packs 7‑bit characters into 20‑bit words
+--------------------------------------------------------------------*/
 static uint32_t encodeASCII(uint32_t offset,
                             const char *txt,
                             uint32_t *out) {
@@ -99,8 +102,9 @@ static uint32_t encodeASCII(uint32_t offset,
     return words;
 }
 
-/* -----------------------------------------------------------------
-   Numeric helpers – translate characters to 4‑bit POCSAG digits     */
+/*-------------------------------------------------------------------
+   Numeric helpers – translate characters to 4‑bit POCSAG digits
+--------------------------------------------------------------------*/
 static uint32_t digitValue(char c) {
     if (c >= '0' && c <= '9')
         return c - '0';
@@ -166,13 +170,14 @@ static uint32_t encodeNumeric(uint32_t offset,
     return words;
 }
 
-/* -----------------------------------------------------------------
-   Address handling – determines the word offset inside a batch      */
+/*-------------------------------------------------------------------
+   Address handling – determines the word offset inside a batch
+--------------------------------------------------------------------*/
 static inline int addressOffset(long addr) {
     return (addr & 0x7) * FRAME_SIZE;
 }
 
-/* -----------------------------------------------------------------
+/*-------------------------------------------------------------------
    Batch helpers                                                      */
 static size_t messageSyncCount(size_t offset,
                                size_t messageWords) {
@@ -193,8 +198,9 @@ static size_t batchPadding(size_t words) {
            (BATCH_SIZE + 1);
 }
 
-/* -----------------------------------------------------------------
-   Build a complete transmission buffer for one repetition           */
+/*-------------------------------------------------------------------
+   Build a complete transmission buffer for one repetition
+--------------------------------------------------------------------*/
 static void encodeTransmission(int repeatIdx,
                                long addr,
                                int fb,
@@ -239,8 +245,9 @@ static void encodeTransmission(int repeatIdx,
         *buf++ = IDLE;
 }
 
-/* -----------------------------------------------------------------
-   Estimate how many 32‑bit words a text message will occupy          */
+/*-------------------------------------------------------------------
+   Estimate how many 32‑bit words a text message will occupy
+--------------------------------------------------------------------*/
 static size_t textMessageLength(int repeatIdx,
                                 long addr,
                                 int chars) {
@@ -275,7 +282,7 @@ static size_t textMessageLength(int repeatIdx,
     return words;
 }
 
-/* -----------------------------------------------------------------
+/*-------------------------------------------------------------------
    Estimate how many 32‑bit words a numeric message will occupy      */
 static size_t numericMessageLength(int repeatIdx,
                                    long addr,
@@ -311,7 +318,7 @@ static size_t numericMessageLength(int repeatIdx,
     return words;
 }
 
-/* -----------------------------------------------------------------
+/*-------------------------------------------------------------------
    Emit the bits for a single repetition, respecting inversion and
    the required bit delay (derived from the baud rate).               */
 static void sendRepetition(uint32_t *words,
@@ -338,17 +345,18 @@ static void sendRepetition(uint32_t *words,
     }
 }
 
-/* -----------------------------------------------------------------
-   Public API – transmit a POCSAG message
-   Parameters
-   ----------
-   address      : pager address (0 … 2^31‑1)
-   message      : text or numeric payload (null‑terminated)
-   functionBits : 2‑bit function code (0‑3)
-   data_type    : alphanumeric(0), numeric(1), tone(2)
-   inverted     : true ⇒ inverted signalling (idle = HIGH)
-   repeatCount  : how many times the whole frame is sent
-   baud         : transmission speed in bits‑per‑second               */
+/*-------------------------------------------------------------------
+   POCSAG Function – Encode/Transmit a POCSAG Page
+     Parameters
+     ----------
+     address      : pager capcode (0 … 2^31‑1)
+     message      : text or numeric payload (null‑terminated)
+     functionBits : 2‑bit function code (0‑3)
+     data_type    : alphanumeric(0), numeric(1), tone(2)
+     inverted     : true ⇒ inverted signalling (idle = HIGH)
+     repeatCount  : how many times the whole frame is sent
+     baud         : transmission speed in bits‑per‑second
+--------------------------------------------------------------------*/
 bool txPOCSAGMessage(long address,
                      const char *message,
                      int baud,
@@ -404,8 +412,8 @@ bool txPOCSAGMessage(long address,
                        bitDelay);
 
         free(txBuf);
-        return true;
     }
-
+    
+    return true;
     gpio_set_level((gpio_num_t)TX_PIN, 1);
 }

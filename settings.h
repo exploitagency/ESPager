@@ -52,7 +52,7 @@ String gscDataType = "1";   // 1 = alphanumeric, 0 = numeric
 //ESPager Version
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 33
-#define VERSION_PATCH 7
+#define VERSION_PATCH 7331
 
 //Initializing Variables
 bool TransmitPocsag = false;

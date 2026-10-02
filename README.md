@@ -62,7 +62,7 @@
 Optional:  
 * Serial UART adapter for programming pager (Worked best in DOSBOX: RadioMaster ExpressLRS USB UART Flasher V2)  
 * 3d printed TPU programming POGO adapter for Motorola Advisor (Included in 3d_prints folder)  
-* Male to Female jumper wires for 3d prints  
+* Male to Female DuPont jumper wires for 3d prints  
 
 --------------------
 # Instructions  
@@ -223,6 +223,8 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 --------------------
 ### Accessing ESPocsag 
 --------------------
+
+* If using a prebuilt binary ESPager starts in AP mode.  But if you wish to configure your own settings then modify the settings.h file and compile and flash your own build.  
 
 * Via WiFi  
 ** STA MODE: http://ESPager  

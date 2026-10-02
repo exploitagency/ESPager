@@ -3,7 +3,7 @@
   GSC encoder for ESP32
   // Based on code by unsynchronized (https://github.com/unsynchronized/gr-mixalot)
   // gr-mixalot License: "./3RD_PARTY_LICENSE/license_gr-mixalot.md" (https://github.com/unsynchronized/gr-mixalot/blob/main/COPYING)
-  https://www.sigidwiki.com/images/5/54/Guide_to_Golay.pdf
+  // Also adapted from the Motorola Guide to Golay PDF: (https://www.sigidwiki.com/images/5/54/Guide_to_Golay.pdf)
 =====================================================================*/
 
 #ifndef GSC_H
@@ -529,10 +529,13 @@ static void transmitBuffer() {
 }
 
 /*--------------------------------------------------------------------
-  Public API – encode then transmit
-      // Based on gr-mixalot by unsynchronized (https://github.com/unsynchronized/gr-mixalot)
-      // gr-mixalot License: "license_gr-mixalot.h" //(https://github.com/unsynchronized/gr-mixalot/blob/main/COPYING)
-      // Also adapted from the Motorola Guide to Golay PDF: (https://www.sigidwiki.com/images/5/54/Guide_to_Golay.pdf)
+  GSC Function – Encode/Transmit a GSC Page
+    Parameters
+    ----------
+    capcode      : pager capcode (0 … 2^31‑1)
+    message      : text or numeric payload (null‑terminated)
+    funcCode     : 2‑bit function code (0‑3)
+    msgType      : alphanumeric(0), numeric(1), tone(2)
 --------------------------------------------------------------------*/
 bool sendGSCFrame(uint32_t        capcode,
                   const char *    message,
@@ -547,12 +550,5 @@ bool sendGSCFrame(uint32_t        capcode,
   transmitBuffer();                           // Send the encoded bits
   return true;
 }
-
-/*=====================================================================
-  Note: all functions are `static inline` so that inclusion in multiple
-  translation units does not cause linkage errors.  The buffer size,
-  timing constants, and pin definitions are left for the user to set
-  (e.g. `#define TX_PIN 7` before including this header).
-=====================================================================*/
 
 #endif // GSC_H
