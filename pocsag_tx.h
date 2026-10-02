@@ -178,7 +178,8 @@ static inline int addressOffset(long addr) {
 }
 
 /*-------------------------------------------------------------------
-   Batch helpers                                                      */
+   Batch helpers
+--------------------------------------------------------------------*/
 static size_t messageSyncCount(size_t offset,
                                size_t messageWords) {
     size_t syncs = 0;
@@ -283,7 +284,8 @@ static size_t textMessageLength(int repeatIdx,
 }
 
 /*-------------------------------------------------------------------
-   Estimate how many 32‑bit words a numeric message will occupy      */
+   Estimate how many 32‑bit words a numeric message will occupy
+--------------------------------------------------------------------*/
 static size_t numericMessageLength(int repeatIdx,
                                    long addr,
                                    int chars) {
@@ -320,7 +322,8 @@ static size_t numericMessageLength(int repeatIdx,
 
 /*-------------------------------------------------------------------
    Emit the bits for a single repetition, respecting inversion and
-   the required bit delay (derived from the baud rate).               */
+   the required bit delay (derived from the baud rate).
+--------------------------------------------------------------------*/
 static void sendRepetition(uint32_t *words,
                            size_t wordCount,
                            bool inverted,
