@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td><img src="images/hacktheplanet.gif" alt="Hack The Planet"></td>
+    <td><img src="images/hacktheplanet.png" alt="Hack The Planet"></td>
     <td>
     ###################################### <br>
     ESPager                                <br>
@@ -20,6 +20,15 @@
 
 --------------------
 # What is it?  
+
+<i>
+<table>
+  <tr>
+    <td><a href="https://vimeo.com/1232687428"><img src="https://vumbnail.com/1232687428.jpg" width="320"></a><br>Video demonstrating web interface<br>(No PBX Required)</td>
+    <td><a href="https://vimeo.com/1232687427"><img src="https://vumbnail.com/1232687427.jpg" width="320"></a><br>Video demonstrating integration with PBX<br>(FreePBX 17 / Asterisk)</td>
+  </tr>
+</table>
+</i>
 
 * ESPager is capable of sending either GSC or POCSAG encoded pages to a pager through ESPager's retro inspired web interface.  
 * The radio module is removed from the pager and replaced with an ESP32 C3.  
@@ -237,6 +246,12 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 * GSC API EXAMPLE  
 ** STA MODE: http://ESPager/gsc?msg=TEST+MESSAGE&cap=313371&function_code=3&data_type=1  
 ** AP MODE:  http://192.168.4.1/gsc?msg=TEST+MESSAGE&cap=313371&function_code=3&data_type=1  
+
+--------------------
+### PBX Integration
+--------------------
+
+* Refer to the readme located at [./Asterisk_FreePBX_17/README.md](Asterisk_FreePBX_17/README.md)
 
 
 --------------------
