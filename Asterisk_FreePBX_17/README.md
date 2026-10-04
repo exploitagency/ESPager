@@ -1,6 +1,10 @@
 ----------
 STEP 1: Add Custom Dialplan  
 ----------
+<a href="config_edit.png">
+  <img src="config_edit.png" width="100" alt="Full-size image">
+</a>
+<br>
 Admin->Config Edit->extensions_custom.conf  
 
 ```
@@ -35,7 +39,7 @@ Save and Apply Config
 
 Note: I have manually installed and loaded the Flite app via command line as my TTS engine, you may find it easier to use prerecorded wav files as your voice prompts.  
 
-Replace instances of:  
+If you do not wish to use Flite then replace instances of:  
 ```
 same => n,Flite(Spoken Text)
 ```
@@ -47,6 +51,10 @@ same => n,Playback(my-recording)
 ----------
 STEP 2: Add Custom Destination  
 ----------
+<a href="custom_destinations.png">
+  <img src="custom_destinations.png" width="100" alt="Full-size image">
+</a>
+<br>
 Admin->Custom Destinations->Add Destination  
 
 Target:  
@@ -63,6 +71,13 @@ Submit and Apply Config
 ----------
 STEP 3: Add Custom Extension  
 ----------
+<a href="add_extension_1.png">
+  <img src="add_extension_1.png" width="100" alt="Full-size image">
+</a>
+<a href="add_extension_2.png">
+  <img src="add_extension_2.png" width="100" alt="Full-size image">
+</a>
+<br>
 Connectivity->Extensions->Add Extension->Add Virtual Extension  
 
 General:  
