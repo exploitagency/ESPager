@@ -1,6 +1,7 @@
 // ESPager by Hardcore Corey Harding
-//Board used is ESP32 C3 SuperMini
-//Choose LOLIN C3 Mini in Arduino Board Manager
+// Board used is ESP32 C3 SuperMini
+// Choose LOLIN C3 Mini in Arduino Board Manager for ESP32 C3 SuperMini
+//   or XAIO_ESP32C3 for XIAO ESP32 C3
 
 //ESP32 Hardware Settings
 #define SLEEP_PIN 3 //ESP32 pin that listens for the signal that pager is on
@@ -21,7 +22,7 @@
 #define ISR_CHECK_INTERVAL_US 900000 // value in uS for isr interval
 
 //Networking
-#define APMODE 0 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
+#define APMODE 1 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
 #define WIFI_POWER_DEFINE WIFI_POWER_8_5dBm // 8.5dBm, set the TX Power of WiFi chip (Default 20dBm)
 //STATION MODE // Your WiFi SSID and Password
 const char* ssid = "router";

@@ -130,8 +130,9 @@ static String htmlEscape(const String &input) {
 void setup() {
   setCpuFrequencyMhz(80);
 
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);  // Active-low LED
+//  Causes compile error for XIAO ESP32 C3 but can save power on other boards
+//  pinMode(LED_BUILTIN, OUTPUT);
+//  digitalWrite(LED_BUILTIN, LOW);  // Active-low LED
 
   Serial.begin(115200);
   delay(100);
