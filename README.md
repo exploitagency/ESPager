@@ -1,20 +1,17 @@
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/exploitagency/ESPager/main/images/hacktheplanet.png" width="320" alt="Hack The Planet"></td>
-    <td>
-    ###################################### <br>
-    ESPager                                <br>
-    A GSC and POCSAG Encoder for ESP32 C3  <br>
-    ###################################### <br>
-    Written by Hardcore Corey Harding      <br>
-    ###################################### <br>
-    Licensed: GPL v3.0                     <br>
-    ###################################### <br>
-    </td>
-  </tr>
-</table>
-
-![alt](images/ESPager_demo.gif)
+```
+######################################
+ESPager
+A GSC and POCSAG Encoder for ESP32 C3
+######################################
+Written by Hardcore Corey Harding
+######################################
+Licensed: GPL v3.0
+######################################
+```
+<img src="images/hacktheplanet.gif" width="320"> <img src="images/hacktheplanet.png" width="320">  
+<br>
+<img src="images/ESPager_demo.gif">
+<br>
 
 * Note: The pager related instructions are specifically tailored to the 1st Generation Motorola Advisor but ESPager should be able to send pages to similar pagers using the same methods as described in the readme.  
 
