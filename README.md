@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td><img src="images/hacktheplanet.png" alt="Hack The Planet"></td>
+    <td><img src="https://raw.githubusercontent.com/exploitagency/ESPager/main/images/hacktheplanet.png" width="320" alt="Hack The Planet"></td>
     <td>
     ###################################### <br>
     ESPager                                <br>
@@ -174,6 +174,7 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 ### Modifying the Motorola Advisor and Installing ESP32 C3  
 --------------------
 
+** WARNING: Do not connect USB when battery power is also connected unless your board has specific hardware to support it!  
 * Desolder the battery holder.  On the positive side clip the legs off the bottom that protrude through the pcb.  On the negative side, bend the leg towards the inside of the pager.  Solder you main battery wires to the battery holder.  Clip the corner of the pager's rear cover as pictured to make room for the battery wire to pass through.  Clip the nub off the bottom of the battery holder under the positive side to make room for the wiring underneat it.  
 * Solder the 3.7v wires from the battery holder to the BMS input as seen in wiring diagram.  
 * Solder the 3.7v wires from the BMS output directly to the ESP32-C3's 5v input and GND and to the 1.5v buck converters input as seen in wiring diagram.(ESP32-C3 5v input can be powered by 3.5v-6v and a fully charged 10440 is 4.2v)  
