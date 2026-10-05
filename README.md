@@ -58,7 +58,7 @@ Licensed: GPL v3.0
 
 ** Note: Most of these items can only be found on AliExpress or through similar vendors  
 * Pager that supports POCSAG or GSC (1st Generation Motorola Advisor)  
-* ESP32 C3 (Generic ESP32-C3 SuperMini)  
+* ESP32 C3 (Generic ESP32-C3 SuperMini or XIAO ESP32C3)  
 * 3.7V 10440 Battery (Button-Top 3.7v Vapcell F4 450mAh or Generic USB C Rechargeable 3.7v 10440 750mWh 200mAh, maybe a 601230?)  
 * x1 mini DC-DC Buck Converter (1.5v output voltage with 2.5v-6.0v input voltage)  
 * x1 3.7v 1S 2.5A li-ion BMS Protection Module with Overdischarge protection (Round type that goes on end of 18650 is smallest I found)  
@@ -182,7 +182,11 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 * Assembly is reverse of disassembly.  
 
 <a href="images/ESPager_wiring.png">
-  <img src="images/ESPager_wiring.png" width="800" alt="Full-size image">
+  <img src="images/ESPager_wiring.png" width="400" alt="Full-size image">
+</a>
+
+<a href="images/ESPager_wiring_XIAO.png">
+  <img src="images/ESPager_wiring_XIAO.png" width="400" alt="Full-size image">
 </a>
 
 <br>
