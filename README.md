@@ -57,11 +57,11 @@ Licensed: GPL v3.0
 # BOM  
 
 ** Note: Most of these items can only be found on AliExpress or through similar vendors  
-* Pager that supports POCSAG or GSC (1st Generation Motorola Advisor)  
-* ESP32 C3 (Generic ESP32-C3 SuperMini or XIAO ESP32C3)  
-* 3.7V 10440 Battery (Button-Top 3.7v Vapcell F4 450mAh or Generic USB C Rechargeable 3.7v 10440 750mWh 200mAh, maybe a 601230?)  
-* x1 mini DC-DC Buck Converter (1.5v output voltage with 2.5v-6.0v input voltage)  
-* x1 3.7v 1S 2.5A li-ion BMS Protection Module with Overdischarge protection (Round type that goes on end of 18650 is smallest I found)  
+* 1st Generation Motorola Advisor (or Pager that supports POCSAG or GSC)  
+* XIAO ESP32 C3 with built in battery charging (or Generic ESP32-C3 SuperMini)  
+* 10440 Button-Top 3.7v Vapcell F4 450mAh (or Generic USB C Rechargeable 3.7v 10440 750mWh 200mAh, maybe a 601230?)  
+* Tiny Out 1A LDO 1.8V (or mini DC-DC Buck Converter 1.5v output voltage with 2.5v-6.0v input voltage)  
+* 3.7v 1S 2.5A li-ion BMS Protection Module with Overdischarge protection (Round type that goes on end of 18650 is smallest I found)  
 * Assorted Color Wire (I used solid core 22awg)  
 * Wiring harness tape(Tesa cloth fabric tape)  
 
@@ -109,6 +109,10 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
   <img src="images/pocsag3.png" width="100" alt="Full-size image">
 </a>
 
+<a href="images/pocsag4.png">
+  <img src="images/pocsag4.png" width="100" alt="Full-size image">
+</a>
+
 <br>
 
 <a href="images/gsc1.png">
@@ -121,6 +125,10 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 
 <a href="images/gsc3.png">
   <img src="images/gsc3.png" width="100" alt="Full-size image">
+</a>
+
+<a href="images/gsc4.png">
+  <img src="images/gsc4.png" width="100" alt="Full-size image">
 </a>
 
 --------------------
@@ -181,12 +189,16 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 * Tape off the inside of the pager to prevent shorts, tape of the bms, buck converter, and ESP32-C3.  
 * Assembly is reverse of disassembly.  
 
-<a href="images/ESPager_wiring.png">
-  <img src="images/ESPager_wiring.png" width="400" alt="Full-size image">
+<a href="images/ESPager_wiring_XIAO_tinyout1a.png">
+  <img src="images/ESPager_wiring_XIAO_tinyout1a.png" width="250" alt="Full-size image">
 </a>
 
 <a href="images/ESPager_wiring_XIAO.png">
-  <img src="images/ESPager_wiring_XIAO.png" width="400" alt="Full-size image">
+  <img src="images/ESPager_wiring_XIAO.png" width="250" alt="Full-size image">
+</a>
+
+<a href="images/ESPager_wiring.png">
+  <img src="images/ESPager_wiring.png" width="250" alt="Full-size image">
 </a>
 
 <br>
@@ -229,6 +241,16 @@ An ESP32 C3 running the code contained within this repo is installed inside a Mo
 
 <a href="images/motorola_advisor_battery_tray_complete.jpg">
   <img src="images/motorola_advisor_battery_tray_complete.jpg" width="100" alt="Full-size image">
+</a>
+
+<br>
+
+<a href="images/ESPAGER_XIAO_1.jpg">
+  <img src="images/ESPAGER_XIAO_1.jpg" width="100" alt="Full-size image">
+</a>
+
+<a href="images/ESPAGER_XIAO_2.jpg">
+  <img src="images/ESPAGER_XIAO_2.jpg" width="100" alt="Full-size image">
 </a>
 
 --------------------
