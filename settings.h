@@ -22,7 +22,7 @@
 #define ISR_CHECK_INTERVAL_US 900000 // value in uS for isr interval
 
 //Networking
-#define APMODE 0 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
+#define APMODE 1 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
 #define WIFI_POWER_DEFINE WIFI_POWER_8_5dBm // 8.5dBm, set the TX Power of WiFi chip (Default 20dBm)
 //STATION MODE // Your WiFi SSID and Password
 const char* ssid = "router";
@@ -53,7 +53,7 @@ String gscDataType = "1";   // 1 = alphanumeric, 0 = numeric
 //ESPager Version
 #define VERSION_MAJOR 2
 #define VERSION_MINOR 0
-#define VERSION_PATCH 0
+#define VERSION_PATCH 1
 
 //Initializing Variables
 bool TransmitPocsag = false;

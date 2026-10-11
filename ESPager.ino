@@ -139,7 +139,7 @@ void setup() {
 
   // Sleep mode setup
   esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_ALL);
-  pinMode(SLEEP_PIN, INPUT_PULLDOWN);
+  pinMode(SLEEP_PIN, INPUT_PULLUP);
   if (ENABLE_SLEEP) {
       gpio_install_isr_service(0);
       gpio_isr_handler_add((gpio_num_t)SLEEP_PIN, heartbeatISR, NULL);
@@ -922,19 +922,19 @@ void loop() {
     // Enter sleep only if timeout exceeded and sleep is enabled
     if (ENABLE_SLEEP && timeSinceLastBeat > SLEEP_TIMEOUT) {
       // SLEEP
-      Serial.flush();
       Serial.println("ESP32 entering light sleep (GPIO wakeup only)...");
-      //server.end();
+      server.end();
       Serial.println("HTTP server stopped.");
       WiFi.disconnect(true);
+      WiFi.mode(WIFI_OFF);
       Serial.println("WiFi disconnected and powered off.");
-      delay(100);
       Serial.flush();
+      delay(100);
       esp_light_sleep_start();
 
       // WAKE UP
-      Serial.flush();
       Serial.println("Woke from light sleep, rebooting ESP32...");
+      Serial.flush();
       delay(100);
       ESP.restart();
 
