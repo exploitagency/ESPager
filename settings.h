@@ -22,13 +22,13 @@
 #define ISR_CHECK_INTERVAL_US 900000 // value in uS for isr interval
 
 //Networking
-#define APMODE 1 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
+#define APMODE 0 // 1 Starts AP Mode at boot, 0 Starts STA mode at boot
 #define WIFI_POWER_DEFINE WIFI_POWER_8_5dBm // 8.5dBm, set the TX Power of WiFi chip (Default 20dBm)
 //STATION MODE // Your WiFi SSID and Password
 const char* ssid = "router";
 const char* password = "Password";
 const char* hostname = "ESPager";
-#define WiFiFallbackCount 25 // # of times to try to connect to the network above before ESP32 creates its own access point
+#define WiFiFallbackCount 10 // # of times to try to connect to the network above before ESP32 creates its own access point
 //Set to zero above to disable fallback to AP mode
 //AP MODE // Access ESPager at http://192.168.4.1 when in AP Mode
 const char* APssid     = "ESPager";
@@ -51,9 +51,9 @@ String gscFunctionCode = "3"; //0,1,2,3
 String gscDataType = "1";   // 1 = alphanumeric, 0 = numeric
 
 //ESPager Version
-#define VERSION_MAJOR 1
-#define VERSION_MINOR 33
-#define VERSION_PATCH 7331
+#define VERSION_MAJOR 2
+#define VERSION_MINOR 0
+#define VERSION_PATCH 0
 
 //Initializing Variables
 bool TransmitPocsag = false;
