@@ -77,9 +77,9 @@ void setWiFiSTAmode() {
 
 // Sleep mode
 static unsigned long lastISRTime = 0;
-void IRAM_ATTR heartbeatISR() {
+static void IRAM_ATTR heartbeatISR(void *arg) {
     unsigned long now = micros();
-    if (now - lastISRTime > ISR_CHECK_INTERVAL_US) {  // debounce in uS
+    if (now - lastISRTime > ISR_CHECK_INTERVAL_US) {
         beatCount++;
         lastHeartbeatTime = millis();
         lastISRTime = now;
@@ -137,20 +137,17 @@ void setup() {
   Serial.begin(115200);
   delay(100);
 
-  // Sleep mode
-  // Clear all previous wakeup configurations
+  // Sleep mode setup
   esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_ALL);
   pinMode(SLEEP_PIN, INPUT_PULLDOWN);
-  attachInterrupt(digitalPinToInterrupt(SLEEP_PIN), heartbeatISR, RISING);
-  lastHeartbeatTime = millis();
-  lastLoopCheck = millis();
-  // Enable external GPIO wakeup on SLEEP_PIN
   if (ENABLE_SLEEP) {
-  esp_sleep_enable_gpio_wakeup();
-  gpio_wakeup_enable((gpio_num_t)SLEEP_PIN, GPIO_INTR_HIGH_LEVEL);
-    Serial.println("Setup complete - GPIO wakeup enabled");
+      gpio_install_isr_service(0);
+      gpio_isr_handler_add((gpio_num_t)SLEEP_PIN, heartbeatISR, NULL);
+      esp_sleep_enable_gpio_wakeup();
+      gpio_wakeup_enable((gpio_num_t)SLEEP_PIN, GPIO_INTR_LOW_LEVEL);
+      Serial.println("GPIO wakeup enabled.");
   } else {
-    Serial.println("Setup complete - sleep mode disabled");
+      Serial.println("Sleep mode disabled");
   }
   
   // Reduce WiFi current spikes
@@ -164,14 +161,6 @@ void setup() {
     setWiFiSTAmode();
   }
 
-  /*
-    This file should contain your transmitter setup code, such as:
-
-      pinMode(TX_PIN, OUTPUT);
-      digitalWrite(TX_PIN, GSC_IDLE_LEVEL);
-
-    It is included here exactly as in the original sketch.
-  */
   #include "tx_setup.h"
 
   /*--------------------------------------------------------------------
@@ -932,12 +921,23 @@ void loop() {
     unsigned long timeSinceLastBeat = now - lastHeartbeatTime;
     // Enter sleep only if timeout exceeded and sleep is enabled
     if (ENABLE_SLEEP && timeSinceLastBeat > SLEEP_TIMEOUT) {
+      // SLEEP
+      Serial.flush();
       Serial.println("ESP32 entering light sleep (GPIO wakeup only)...");
+      //server.end();
+      Serial.println("HTTP server stopped.");
+      WiFi.disconnect(true);
+      Serial.println("WiFi disconnected and powered off.");
+      delay(100);
       Serial.flush();
-      disableCore0WDT();  // Disable before sleeping
       esp_light_sleep_start();
-      Serial.println("ESP32 woke from light sleep");
+
+      // WAKE UP
       Serial.flush();
+      Serial.println("Woke from light sleep, rebooting ESP32...");
+      delay(100);
+      ESP.restart();
+
     }
   }
 
@@ -952,6 +952,9 @@ void loop() {
 
     if (TransmitPocsag) {
       TransmitPocsag = false;
+
+      // Disable sleep-related interrupts during transmission
+      gpio_isr_handler_remove((gpio_num_t)SLEEP_PIN);
 
       bool success = txPOCSAGMessage(
           static_cast<long>(cap.toInt()),
@@ -968,6 +971,12 @@ void loop() {
       } else {
         Serial.println("POCSAG transmission failed.");
       }
+
+      // Re-enable sleep after transmission
+      if (ENABLE_SLEEP) {
+          gpio_isr_handler_add((gpio_num_t)SLEEP_PIN, heartbeatISR, NULL);
+      }
+
     }
   }
 
@@ -980,6 +989,9 @@ void loop() {
 
     if (transmitGSC) {
       transmitGSC = false;
+
+      // Disable sleep-related interrupts during transmission
+      gpio_isr_handler_remove((gpio_num_t)SLEEP_PIN);
 
       uint32_t capcode =
           static_cast<uint32_t>(gscCap.toInt());
@@ -1004,6 +1016,13 @@ void loop() {
       } else {
         Serial.println("GSC transmission failed.");
       }
+
+      // Re-enable sleep after transmission
+      if (ENABLE_SLEEP) {
+          gpio_isr_handler_add((gpio_num_t)SLEEP_PIN, heartbeatISR, NULL);
+      }
+
     }
   }
+
 }
